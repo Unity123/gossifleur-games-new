@@ -61,7 +61,13 @@ exports.wsdeflate = {
  *  something.
  * @type {{port: number, options: {key: string, cert: string}} | null}
  */
-exports.ssl = null;
+exports.ssl = {
+	port: 443,
+	options: {
+		key: '/etc/letsencrypt/live/gossifleur.games/privkey.pem',
+		cert: '/etc/letsencrypt/live/gossifleur.games/fullchain.pem',
+	},
+};
 
 /*
 // example:
@@ -90,7 +96,7 @@ Main's SSL deploy script from Let's Encrypt looks like:
  *   know what you are doing
  * @type {false | string[]}.
  */
-exports.proxyip = false;
+exports.proxyip = ["127.0.0.1"];
 
 /**
  * Various debug options
@@ -464,6 +470,8 @@ exports.repl = false;
 exports.replsocketprefix = './logs/repl/';
 exports.replsocketmode = 0o600;
 
+exports.nofswriting = true;
+
 /**
  * disablehotpatchall - disables `/hotpatch all`. Generally speaking, there's a
  * pretty big need for /hotpatch all - convenience. The only advantage any hotpatch
@@ -553,10 +561,6 @@ exports.chatlogreader = 'fs';
  *     - minigame: make minigames (hangman, polls, etc.).
  *     - game: make games.
  */
- 
-exports.serverid = 'dragonheaven';
-exports.servertoken = 'VEFWkJjd5iYd';
- 
 exports.grouplist = [
 	{
 		symbol: '&',
@@ -637,7 +641,6 @@ exports.grouplist = [
 		ip: true,
 		alts: '@u',
 		game: true,
-		tournaments: true,
 	},
 	{
 		symbol: '%',
